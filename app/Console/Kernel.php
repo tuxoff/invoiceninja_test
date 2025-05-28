@@ -111,11 +111,11 @@ class Kernel extends ConsoleKernel
 
         if (Ninja::isSelfHost()) {
             $schedule->call(function () {
+                \Log::info('Scheduler alive');
                 Account::query()->whereNotNull('id')->update(['is_scheduler_running' => true]);
-            })->everyFiveMinutes();
+            })->everyMinute();
 
             $schedule->job(new EInvoicePullDocs())->everyFourHours(rand(0, 59))->withoutOverlapping();
-
         }
 
         /* Run hosted specific jobs */
