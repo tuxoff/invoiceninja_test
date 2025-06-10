@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
-use Laravel\Horizon\Horizon;
 use Illuminate\Http\Request;
 use Laravel\Horizon\HorizonApplicationServiceProvider;
 
