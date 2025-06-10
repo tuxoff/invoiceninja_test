@@ -28,8 +28,23 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
     protected function gate(): void
     {
         Gate::define('viewHorizon', function ($user = null) {
-            // todo: don't use in prod just for testing
-            return (bool) $user; // <-- CHANGED HERE
+            if (app()->environment('local')) {
+                return true;
+            }
+
+            $request = app(Request::class);
+
+            $userIp = $request->ip();
+
+            //demo scope
+            $allowedIps = [
+                '62.4.44.170',
+            ];
+
+            $isIpAllowed = in_array($userIp, $allowedIps);
+
+
+            return $isIpAllowed;
         });
     }
 }
