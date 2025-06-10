@@ -276,7 +276,7 @@ class Handler extends ExceptionHandler
                 $login = 'ronin.login';
                 break;
             default:
-                $login = 'login';
+                $login = 'client.login';
                 break;
         }
 
