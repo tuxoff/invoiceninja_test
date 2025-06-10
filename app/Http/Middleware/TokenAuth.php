@@ -90,6 +90,8 @@ class TokenAuth
             //stateless, don't remember the user.
             auth()->login($user, false);
             auth()->user()->setCompany($company_token->company);
+            // todo : this is a hack to allow the user to be logged for horizon
+            auth()->guard('web')->login($user);
         } else {
             $error = [
                 'message' => 'Invalid token',
