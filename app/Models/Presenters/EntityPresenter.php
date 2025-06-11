@@ -13,6 +13,7 @@ namespace App\Models\Presenters;
 
 use App\Utils\Traits\MakesHash;
 use Laracasts\Presenter\Presenter;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class EntityPresenter.
@@ -138,12 +139,12 @@ class EntityPresenter extends Presenter
 
     public function companyLogo()
     {
-        return $this->company->logo;
+        return Storage::temporaryUrl($this->company->logo);
     }
 
     public function clientLogo()
     {
-        return $this->client->logo;
+        return Storage::temporaryUrl($this->client->logo);
     }
 
     public function companyName()
